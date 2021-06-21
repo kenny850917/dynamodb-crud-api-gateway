@@ -19,7 +19,7 @@ jobs:
       # checkout your repository under workspace so your job could access it
       - uses: actions/checkout@v2
 
-      - uses: action/cache@v2
+      - uses: actions/cache@v2
         with:
           path: "**/node_modules"
           key: ${{runner.os}}-modules-${{hashFiles('**/yarn.lock')}}
