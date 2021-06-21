@@ -1,5 +1,5 @@
 name: Deploy DynamoDB CRUD API
-#controls when the action will run. 
+#controls when the action will run.
 # Triggers the workflow on push or pull events only for the main branch.
 on:
   push:
@@ -16,31 +16,27 @@ jobs:
 
     #steps represent a sequence of tasks that will be excuted as part of the job
     steps:
-    # checkout your repository under workspace so your job could access it
-    - uses: actions/checkout@v2
-    
-    - uses: action/cache@v2
-      with:
-        path: '**/node_modules'
-        key: ${{runner.os}}-modules-${{hashFiles('**/yarn.lock')}}
-      
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-    
-    -name: Install dependencies
-      run: yarn install
-      
-    - name: serverless deploy
-      uses: serverless/github-action@master
-      with:
-        args: deploy
-      env:
-        # use AWS credentials
-        AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
-        AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      # checkout your repository under workspace so your job could access it
+      - uses: actions/checkout@v2
 
+      - uses: action/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{runner.os}}-modules-${{hashFiles('**/yarn.lock')}}
 
-  
-  
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: serverless deploy
+        uses: serverless/github-action@master
+        with:
+          args: deploy
+        env:
+          # use AWS credentials
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
