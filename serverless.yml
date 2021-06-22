@@ -92,7 +92,7 @@ functions:
 
 resources:
   Resources:
-    PostsTables:
+    PostsTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:custom.postsTable}
